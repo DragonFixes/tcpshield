@@ -1,0 +1,5 @@
+accessWidener v2 named
+
+# TCPShield Access Widener
+#accessible field net/minecraft/network/protocol/handshake/ClientIntentionPacket     hostName        Ljava/lang/String;
+#accessible field net/minecraft/network/protocol/handshake/ClientIntentionPacket     port            I

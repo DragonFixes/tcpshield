@@ -1,0 +1,42 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+#issueTrackerURL = ""
+license = "Insert License Here"
+
+[[mods]]
+modId = "tcpshield"
+version = "${version}"
+displayName = "TCPShield"
+authors = "MrDrakify"
+description = '''
+TCPShield support for Forge.
+'''
+#logoFile = ""
+
+[[dependencies.tcpshield]]
+modId = "forge"
+mandatory = true
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.tcpshield]]
+modId = "minecraft"
+mandatory = true
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.tcpshield]]
+modId = "geyser"
+mandatory = false
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.tcpshield]]
+modId = "floodgate"
+mandatory = false
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"

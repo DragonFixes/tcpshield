@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "net.tcpshield.tcpshield.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "ClientIntentionPacketMixin",
+    "IClientIntentionPacketAccessor",
+    "ServerHandshakePacketListenerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "conformVisibility": true
+  }
+}

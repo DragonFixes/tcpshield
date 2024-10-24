@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "${group}",
+    "id": "tcpshield",
+    "version": "${version}",
+    "metadata": {
+      "name": "TCPShield",
+      "description": "TCPShield support for Quilt",
+      "contributors": {
+        "MrDrakify": "Author",
+        "TCPShield": "API + Some Code Provider"
+      },
+      "icon": "assets/tcpshield/icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "entrypoints": {
+      "init": [
+        "net.tcpshield.tcpshield.quilt.TCPShieldQuilt"
+      ]
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "version": "*"
+      },
+      {
+        "id": "quilt_base",
+        "version": "*"
+      },
+      {
+        "id": "minecraft",
+        "version": "*"
+      }
+    ],
+    "suggests": [
+      {
+        "id": "geyser",
+        "version": "*"
+      },
+      {
+        "id": "floodgate",
+        "version": "*"
+      }
+    ]
+  },
+  "mixin": [
+    "tcpshield.mixins.json"
+  ]
+}
