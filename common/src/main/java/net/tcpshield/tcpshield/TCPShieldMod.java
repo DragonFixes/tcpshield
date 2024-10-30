@@ -6,6 +6,7 @@ import net.tcpshield.tcpshield.geyser.GeyserUtils;
 import net.tcpshield.tcpshield.handler.TCPShieldPacketHandler;
 import net.tcpshield.tcpshield.text.HexInit;
 import net.tcpshield.tcpshield.utils.Debugger;
+import net.tcpshield.tcpshield.utils.LoggingUtils;
 import net.tcpshield.tcpshield.utils.exception.phase.InitializationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,8 @@ public class TCPShieldMod extends DragonMod implements TCPShieldPlugin {
 
     @Override
     public void onServerStart() {
+        INSTANCE = this;
+
         try {
             CONFIG = new MainConfig(this);
             DEBUGGER = Debugger.createDebugger(this);
@@ -47,7 +50,11 @@ public class TCPShieldMod extends DragonMod implements TCPShieldPlugin {
 
             initialization();
         } catch (Exception e) {
-            throw new InitializationException(e);
+            LoggingUtils.logSystem("Server start failed for TCPShield Mod.");
+            LoggingUtils.logSystem(e.getMessage());
+            for (StackTraceElement element : e.getStackTrace()) {
+                LoggingUtils.logSystem(element.toString());
+            }
         }
     }
 

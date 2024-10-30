@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ClientIntentionPacket.class)
 public class ClientIntentionPacketMixin {
-    @Inject(method = "getHostName", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "hostName", at = @At("HEAD"), cancellable = true)
     public void onGetHostName(CallbackInfoReturnable<String> cir) {
         String masked = ConnectionHandler.getMaskedAs((IClientIntentionPacketAccessor) this);
         if (masked != null) {

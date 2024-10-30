@@ -8,6 +8,6 @@ public class HexInit {
         TextManager.registerHexPolicy(new HexPolicy("<#", ">"));
         TextManager.registerHexPolicy(new HexPolicy("&#", ""));
 
-        LoggingUtils.logInfo("Registered " + TextManager.getHexPolicies().size() + " hex policies.");
+        LoggingUtils.logSystem("Registered " + TextManager.getHexPolicies().size() + " hex policies.");
     }
 }

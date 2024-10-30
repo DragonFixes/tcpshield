@@ -2,7 +2,7 @@ package net.tcpshield.tcpshield.handler;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.network.ConnectionProtocol;
+import net.minecraft.network.protocol.handshake.ClientIntent;
 import net.tcpshield.tcpshield.mixin.IClientIntentionPacketAccessor;
 import tv.quaint.events.components.BaseEvent;
 
@@ -34,7 +34,7 @@ public class HandshakeEvent extends BaseEvent {
         return packet.tcpshield$getProtocolVersion();
     }
 
-    public ConnectionProtocol getProtocol() {
+    public ClientIntent getIntent() {
         return packet.tcpshield$getIntention();
     }
 

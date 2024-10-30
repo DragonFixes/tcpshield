@@ -13,9 +13,6 @@ import java.util.Optional;
 
 @Getter @Setter
 public abstract class DragonMod extends ModEventable implements IModEventable, Comparable<DragonMod> {
-    @Getter @Setter
-    private String identifier;
-
     public DragonMod(String identifier, boolean load) {
         super(identifier, load);
     }

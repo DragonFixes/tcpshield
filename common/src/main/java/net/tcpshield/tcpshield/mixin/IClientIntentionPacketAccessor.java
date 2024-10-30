@@ -1,6 +1,6 @@
 package net.tcpshield.tcpshield.mixin;
 
-import net.minecraft.network.ConnectionProtocol;
+import net.minecraft.network.protocol.handshake.ClientIntent;
 import net.minecraft.network.protocol.handshake.ClientIntentionPacket;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,5 +22,5 @@ public interface IClientIntentionPacketAccessor {
 
     @Accessor("intention")
     @Final
-    ConnectionProtocol tcpshield$getIntention();
+    ClientIntent tcpshield$getIntention();
 }

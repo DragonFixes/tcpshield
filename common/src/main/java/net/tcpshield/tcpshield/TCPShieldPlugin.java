@@ -1,7 +1,7 @@
 package net.tcpshield.tcpshield;
 
+import net.tcpshield.tcpshield.configs.MainConfig;
 import net.tcpshield.tcpshield.handler.TCPShieldPacketHandler;
-import net.tcpshield.tcpshield.provider.ConfigProvider;
 import net.tcpshield.tcpshield.utils.Debugger;
 import org.slf4j.Logger;
 
@@ -15,7 +15,7 @@ public interface TCPShieldPlugin {
 	 *
 	 * @return The plugin's config provider
 	 */
-	ConfigProvider getConfigProvider();
+	MainConfig getConfigProvider();
 
 	/**
 	 * Gets the plugin's logger

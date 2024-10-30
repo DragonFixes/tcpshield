@@ -3,81 +3,57 @@ package net.tcpshield.tcpshield.configs;
 import lombok.Getter;
 import lombok.Setter;
 import net.tcpshield.tcpshield.TCPShieldMod;
-import net.tcpshield.tcpshield.provider.ConfigProvider;
-import net.tcpshield.tcpshield.utils.exception.config.ConfigLoadException;
-import net.tcpshield.tcpshield.utils.exception.config.ConfigReloadException;
-import net.tcpshield.tcpshield.utils.exception.config.ConfigResetException;
-import net.tcpshield.tcpshield.utils.exception.phase.ConfigException;
-import tv.quaint.storage.StorageUtils;
+import tv.quaint.storage.resources.flat.simple.SimpleConfiguration;
+
+import java.io.File;
 
 @Getter @Setter
-public class MainConfig extends ConfigProvider {
+public class MainConfig extends SimpleConfiguration {
     private TCPShieldMod plugin;
 
     public MainConfig(TCPShieldMod plugin) {
-        super("config.yml", plugin, false);
+        super("config.yml", plugin, true);
     }
 
     @Override
     public void init() {
-        reload();
+        isOnlyProxy();
+        getTimestampValidationMode();
+        doDebug();
+        isGeyser();
     }
 
-    @Override
-    protected void checkNodes(String... nodes) {
-        for (String node : nodes) {
-            if (! getResource().contains(node))
-                throw new ConfigException("The node \"" + node + "\" does not exist in the config.");
-        }
+    public boolean isOnlyProxy() {
+        reloadResource();
+
+        return getOrSetDefault("only-allow-proxy-connections", true);
     }
 
-    @Override
-    protected void reset() throws ConfigResetException {
-        try {
-            try {
-                configFile.delete();
-            } catch (Exception ignored) {
-                // Just ignore since it either does not exist, or we can overwrite
-            }
+    public String getTimestampValidationMode() {
+        reloadResource();
 
-            StorageUtils.ensureFileFromSelf(this.getClass().getClassLoader(), getDataFolder(), getConfigFile(), "config.yml");
-        } catch (Exception e) {
-            throw new ConfigResetException(e);
-        }
+        return getOrSetDefault("timestamp-validation", "htpdate");
     }
 
-    @Override
-    protected void load() throws ConfigLoadException {
-        try {
-            checkNodes("only-allow-proxy-connections", "timestamp-validation", "debug-mode", "enable-geyser-support", "prefer-protocollib");
+    public boolean doDebug() {
+        reloadResource();
 
-            this.onlyProxy = getResource().getBoolean("only-allow-proxy-connections");
-            this.timestampValidationMode = getResource().getString("timestamp-validation");
-            this.doDebug = getResource().getBoolean("debug-mode");
-            this.geyser = getResource().getBoolean("enable-geyser-support");
-        } catch (Exception e) {
-            throw new ConfigLoadException(e);
-        }
+        return getOrSetDefault("debug-mode", false);
     }
 
-    @Override
-    public void reload() throws ConfigReloadException {
-        try {
-            if (! dataFolder.exists())
-                dataFolder.mkdir();
+    public boolean isGeyser() {
+        reloadResource();
 
-            if (!configFile.exists())
-                reset();
+        return getOrSetDefault("enable-geyser-support", false);
+    }
 
-            try {
-                load();
-            } catch (ConfigLoadException exception) {
-                plugin.getLogger().warn("Config loading failed, resetting to default config. (This can be ignored if you just switched builds of TCPShield)");
-                reset();
-                reload(); // Redo cycle, possible StackOverFlow, but realistically only happens if reset fails
-            }
-        } catch (Exception e) {
-            throw new ConfigReloadException(e);
-        }
+    public int getMaxTimestampDifference() {
+        reloadResource();
+
+        return getOrSetDefault("max-timestamp-difference", 3); // 3 seconds
+    }
+
+    public File getDataFolder() {
+        return getSelfFile().getParentFile();
     }
 }

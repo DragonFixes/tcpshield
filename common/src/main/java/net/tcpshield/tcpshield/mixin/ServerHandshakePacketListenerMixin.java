@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ServerHandshakePacketListenerMixin {
     @Inject(method = "handleIntention", at = @At("HEAD"), cancellable = true)
     public void onHandshake(ClientIntentionPacket packet, CallbackInfo ci) {
-        HandshakeEvent event = new HandshakeEvent((IClientIntentionPacketAccessor) packet).fire();
+        HandshakeEvent event = new HandshakeEvent((IClientIntentionPacketAccessor) (Object) packet).fire();
         if (event.isCancelled()) {
             ci.cancel();
             return;

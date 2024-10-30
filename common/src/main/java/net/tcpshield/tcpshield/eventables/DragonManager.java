@@ -4,11 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
+import net.tcpshield.tcpshield.TCPShieldMod;
 import net.tcpshield.tcpshield.configs.LoggingConfig;
 import net.tcpshield.tcpshield.utils.LoggingUtils;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -78,19 +78,32 @@ public class DragonManager {
 
     // On Base init. This is called before the server starts.
     public static void init() {
-
+        try {
+            TCPShieldMod mod = new TCPShieldMod();
+            loadMod(mod);
+        } catch (Exception e) {
+            LoggingUtils.logSystem("Failed to initialize TCPShield Mod.");
+            LoggingUtils.logSystem(e.getMessage());
+            for (StackTraceElement element : e.getStackTrace()) {
+                LoggingUtils.logSystem(element.toString());
+            }
+        }
     }
 
     public static void onServerStart(MinecraftServer server) {
         try {
             setServer(server); // has to be set before anything else
 
+            getLoadedMods().forEach(DragonMod::onServerStart);
+
             LoggingConfig.load(); // Has to be loaded after MainConfig
             LoggingConfig.save();
         } catch (Exception e) {
-            LoggingUtils.logSystem("Failed to start DragonUtils.");
+            LoggingUtils.logSystem("Failed to start TCPShield Mod.");
             LoggingUtils.logSystem(e.getMessage());
-            LoggingUtils.logSystem(Arrays.toString(e.getStackTrace()));
+            for (StackTraceElement element : e.getStackTrace()) {
+                LoggingUtils.logSystem(element.toString());
+            }
         }
     }
 
