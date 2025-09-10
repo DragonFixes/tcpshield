@@ -1,5 +1,6 @@
 package gg.drak.tcpshield.utils;
 
+import gg.drak.tcpshield.TCPShieldMod;
 import gg.drak.tcpshield.TCPShieldPlugin;
 import org.slf4j.Logger;
 
@@ -7,33 +8,31 @@ import org.slf4j.Logger;
  * A util for debugging
  */
 public abstract class Debugger {
-
 	/**
 	 * Creates a debugger instance according to
 	 * the plugin's configuration options
-	 * @param plugin The TCPShield plugin
 	 * @return A debugger instance from plugin's configuration
 	 */
-	public static Debugger createDebugger(TCPShieldPlugin plugin) {
-		if (plugin.getConfigProvider().doDebug())
+	public static Debugger createDebugger() {
+		if (TCPShieldMod.INSTANCE.getConfigProvider().doDebug())
 			/*
 			 * A non-empty debugger using the plugin's logger
 			 */
-			return new Debugger(plugin.getLogger()) {
+			return new Debugger(TCPShieldMod.INSTANCE.getLogger()) {
 
 				@Override
 				public void info(String format, Object... formats) {
-					this.logger.info("Debug : " + String.format(format, formats));
+                    this.logger.info("Debug : {}", String.format(format, formats));
 				}
 
 				@Override
 				public void warn(String format, Object... formats) {
-					this.logger.warn("Debug : " + String.format(format, formats));
+                    this.logger.warn("Debug : {}", String.format(format, formats));
 				}
 
 				@Override
 				public void error(String format, Object... formats) {
-					this.logger.error("Debug : " + String.format(format, formats));
+                    this.logger.error("Debug : {}", String.format(format, formats));
 				}
 
 				@Override
@@ -109,5 +108,4 @@ public abstract class Debugger {
 	 * @param exception The exception to be outputted
 	 */
 	public abstract void exception(Exception exception);
-
 }

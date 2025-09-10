@@ -3,15 +3,13 @@ package gg.drak.tcpshield.eventables;
 import gg.drak.thebase.objects.handling.derived.IModEventable;
 import gg.drak.thebase.objects.handling.derived.ModEventable;
 import gg.drak.thebase.storage.resources.flat.simple.SimpleConfiguration;
-import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 
-@Getter @Setter
+@Setter
 public abstract class DragonMod extends ModEventable implements IModEventable, Comparable<DragonMod> {
-    @Getter @Setter
     private String identifier;
 
     public DragonMod(String identifier, boolean load) {
@@ -20,6 +18,15 @@ public abstract class DragonMod extends ModEventable implements IModEventable, C
 
     public DragonMod(String identifier) {
         this(identifier, true);
+    }
+
+    public abstract String fallbackIdentifier();
+
+    public String getIdentifier() {
+        if (identifier == null || identifier.isEmpty()) {
+            identifier = fallbackIdentifier();
+        }
+        return identifier;
     }
 
     @Override
@@ -40,7 +47,7 @@ public abstract class DragonMod extends ModEventable implements IModEventable, C
     }
 
     public File getModDirectory() {
-        File modsDir = DragonManager.getNodsDirectory();
+        File modsDir = DragonManager.getModsDirectory();
         File modDir = new File(modsDir, getIdentifier());
 
         if (! modDir.exists()) {

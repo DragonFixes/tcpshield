@@ -37,18 +37,13 @@ public abstract class ConfigProvider extends SimpleConfiguration {
     /*
 	 * Plugin Constants
 	 */
+
 	@Getter
     protected final long maxTimestampDifference = 3; // In Unix Timesteps (Seconds)
 
     /*
 	 * Required methods
 	 */
-
-	/**
-	 * Deletes the current config saved to the disk and reinstalls the default config
-	 * @throws ConfigResetException Thrown if resetting fails
-	 */
-	protected abstract void reset() throws ConfigResetException;
 
 	/**
 	 * Trys to load the options from the config, if failed, throws ConfigLoadException
@@ -61,11 +56,4 @@ public abstract class ConfigProvider extends SimpleConfiguration {
 	 * @throws ConfigReloadException Thrown if reloading fails
 	 */
 	public abstract void reload() throws ConfigReloadException;
-
-	/**
-	 * Checks the provided nodes to see if they exist in the config
-	 * @param nodes The nodes to check
-	 * @throws ConfigException Thrown when a node isnt found
-	 */
-	protected abstract void checkNodes(String... nodes) throws ConfigException;
 }

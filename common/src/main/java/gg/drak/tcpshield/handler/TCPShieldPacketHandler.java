@@ -1,6 +1,6 @@
 package gg.drak.tcpshield.handler;
 
-import gg.drak.tcpshield.TCPShieldPlugin;
+import gg.drak.tcpshield.TCPShieldMod;
 import gg.drak.tcpshield.geyser.GeyserUtils;
 import gg.drak.tcpshield.provider.PacketProvider;
 import gg.drak.tcpshield.provider.PlayerProvider;
@@ -26,20 +26,14 @@ import java.util.Arrays;
  * Packet handler for TCPShield's plugins
  */
 public class TCPShieldPacketHandler {
-	private final TCPShieldPlugin plugin;
-
 	private TimestampValidator timestampValidator;
 	private SignatureValidator signatureValidator;
 	private CIDRValidator cidrValidator;
 
 	/**
 	 * Creates an instance of the TCPShieldPacketHandler
-	 *
-	 * @param plugin The TCPShield plugin
 	 */
-	public TCPShieldPacketHandler(TCPShieldPlugin plugin) throws NoSuchAlgorithmException, IOException, InvalidKeySpecException {
-		this.plugin = plugin;
-
+	public TCPShieldPacketHandler() throws NoSuchAlgorithmException, IOException, InvalidKeySpecException {
 		initValidators();
 	}
 
@@ -53,29 +47,29 @@ public class TCPShieldPacketHandler {
 	private void initValidators() throws NoSuchAlgorithmException, IOException, InvalidKeySpecException {
 		signatureValidator = new SignatureValidator();
 
-		switch (plugin.getConfigProvider().getTimestampValidationMode().toLowerCase()) {
+		switch (TCPShieldMod.INSTANCE.getConfigProvider().getTimestampValidationMode().toLowerCase()) {
 			case "system": {
-				timestampValidator = TimestampValidator.createDefault(plugin);
+				timestampValidator = TimestampValidator.createDefault();
 				break;
 			}
 			case "htpdate": {
-				timestampValidator = new HTPDateTimestampValidator(plugin);
+				timestampValidator = new HTPDateTimestampValidator();
 				break;
 			}
 			case "off": {
-				timestampValidator = TimestampValidator.createEmpty(plugin);
+				timestampValidator = TimestampValidator.createEmpty();
 				break;
 			}
 			default: {
-				plugin.getDebugger().warn(
+				TCPShieldMod.INSTANCE.getDebugger().warn(
 						"Unknown timestamp validation mode \"%s\"! Disabling timestamp validation.",
-						plugin.getConfigProvider().getTimestampValidationMode());
-				timestampValidator = TimestampValidator.createEmpty(plugin);
+						TCPShieldMod.INSTANCE.getConfigProvider().getTimestampValidationMode());
+				timestampValidator = TimestampValidator.createEmpty();
 				break;
 			}
 		}
 
-		cidrValidator = new CIDRValidator(plugin);
+		cidrValidator = new CIDRValidator();
 	}
 
 	/**
@@ -151,10 +145,10 @@ public class TCPShieldPacketHandler {
 
 			packet.setPacketHostname(hostname);
 		} catch (NumberFormatException | InvalidPayloadException e) {
-			plugin.getDebugger().warn(
+			TCPShieldMod.INSTANCE.getDebugger().warn(
 					"%s[%s/%s] was disconnected because no proxy info was received and only-allow-proxy-connections is enabled. Raw payload = \"%s\"",
 					player.getName(), player.getUUID(), player.getIP(), packet.getPayloadString());
-			if (plugin.getConfigProvider().isOnlyProxy())
+			if (TCPShieldMod.INSTANCE.getConfigProvider().isOnlyProxy())
 				player.disconnect();
 
 			if (!(e instanceof InvalidPayloadException))
@@ -162,37 +156,37 @@ public class TCPShieldPacketHandler {
 			else
 				throw new HandshakeException(e);
 		} catch (TimestampValidationException e) {
-			plugin.getDebugger().warn(
+			TCPShieldMod.INSTANCE.getDebugger().warn(
 					"%s[%s/%s] provided valid handshake information, but timestamp was not valid. " +
 							"Provided timestamp: %d vs. system timestamp: %d. Please check your machine time. Timestamp validation mode: %s",
-					player.getName(), player.getUUID(), player.getIP(), e.getTimestamp(), e.getTimestampValidator().getUnixTime(), plugin.getConfigProvider().getTimestampValidationMode());
-			if (plugin.getConfigProvider().isOnlyProxy())
+					player.getName(), player.getUUID(), player.getIP(), e.getTimestamp(), e.getTimestampValidator().getUnixTime(), TCPShieldMod.INSTANCE.getConfigProvider().getTimestampValidationMode());
+			if (TCPShieldMod.INSTANCE.getConfigProvider().isOnlyProxy())
 				player.disconnect();
 
 			throw new HandshakeException(e);
 		} catch (SignatureValidationException e) {
-			plugin.getDebugger().warn(
+			TCPShieldMod.INSTANCE.getDebugger().warn(
 					"%s[%s/%s] provided valid handshake information, but signing check failed. Raw payload = \"%s\"",
 					player.getName(), player.getUUID(), player.getIP(), packet.getPayloadString());
-			if (plugin.getConfigProvider().isOnlyProxy())
+			if (TCPShieldMod.INSTANCE.getConfigProvider().isOnlyProxy())
 				player.disconnect();
 
 			throw new HandshakeException(e);
 		} catch (UnknownHostException e) {
-			if (plugin.getConfigProvider().isOnlyProxy())
+			if (TCPShieldMod.INSTANCE.getConfigProvider().isOnlyProxy())
 				player.disconnect();
 
 			throw new HandshakeException(e);
 		} catch (InvalidSecretException e) {
-			plugin.getDebugger().warn(
+			TCPShieldMod.INSTANCE.getDebugger().warn(
 					"%s[%s/%s] provided an invalid session secret when authenticating a geyser connection.",
 					player.getName(), player.getUUID(), player.getIP());
-			if (plugin.getConfigProvider().isOnlyProxy())
+			if (TCPShieldMod.INSTANCE.getConfigProvider().isOnlyProxy())
 				player.disconnect();
 
 			throw new HandshakeException(e);
 		} catch (Exception e) {
-			if (plugin.getConfigProvider().isOnlyProxy())
+			if (TCPShieldMod.INSTANCE.getConfigProvider().isOnlyProxy())
 				player.disconnect();
 
 			if (!(e instanceof HandshakeException))

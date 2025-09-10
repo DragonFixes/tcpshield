@@ -61,7 +61,7 @@ public class DragonManager {
         return dir;
     }
 
-    public static File getNodsDirectory() {
+    public static File getModsDirectory() {
         File serverDir = getServerDirectory();
         File modsDir = new File(serverDir, "mods");
 
@@ -85,14 +85,13 @@ public class DragonManager {
         try {
             setServer(server); // has to be set before anything else
 
+            doServerStartMods(); // Has to be done before loading LoggingConfig
+
             LoggingConfig.load(); // Has to be loaded after MainConfig
             LoggingConfig.save();
-
-            doServerStartMods();
         } catch (Exception e) {
             LoggingUtils.logSystem("Failed to start DragonUtils.");
-            LoggingUtils.logSystem(e.getMessage());
-            LoggingUtils.logSystem(Arrays.toString(e.getStackTrace()));
+            e.printStackTrace();
         }
     }
 

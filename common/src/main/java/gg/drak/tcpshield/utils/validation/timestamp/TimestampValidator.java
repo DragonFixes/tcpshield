@@ -1,6 +1,6 @@
 package gg.drak.tcpshield.utils.validation.timestamp;
 
-import gg.drak.tcpshield.TCPShieldPlugin;
+import gg.drak.tcpshield.TCPShieldMod;
 
 /**
  * Base for timestamp validators
@@ -11,8 +11,8 @@ public abstract class TimestampValidator {
 	 * Creates an empty validator that always returns true
 	 * @return An empty validator always returning true
 	 */
-	public static TimestampValidator createEmpty(TCPShieldPlugin plugin) {
-		return new TimestampValidator(plugin) {
+	public static TimestampValidator createEmpty() {
+		return new TimestampValidator() {
 			@Override
 			public boolean validate(long timestamp) {
 				return true;
@@ -24,17 +24,13 @@ public abstract class TimestampValidator {
 	 * Creates a system validator that uses default validation
 	 * @return A system validator
 	 */
-	public static TimestampValidator createDefault(TCPShieldPlugin plugin) {
-		return new TimestampValidator(plugin) {
+	public static TimestampValidator createDefault() {
+		return new TimestampValidator() {
 			// Uses default methods
 		};
 	}
 
-
-	protected final TCPShieldPlugin plugin;
-
-	public TimestampValidator(TCPShieldPlugin plugin) {
-		this.plugin = plugin;
+	public TimestampValidator() {
 	}
 
 
@@ -45,7 +41,7 @@ public abstract class TimestampValidator {
 	 * @return Boolean stating if its valid
 	 */
 	public boolean validate(long timestamp) {
-		return Math.abs(getUnixTime() - timestamp) <= plugin.getConfigProvider().getMaxTimestampDifference();
+		return Math.abs(getUnixTime() - timestamp) <= TCPShieldMod.INSTANCE.getConfigProvider().getMaxTimestampDifference();
 	}
 
 

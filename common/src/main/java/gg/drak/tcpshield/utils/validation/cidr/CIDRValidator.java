@@ -1,6 +1,6 @@
 package gg.drak.tcpshield.utils.validation.cidr;
 
-import gg.drak.tcpshield.TCPShieldPlugin;
+import gg.drak.tcpshield.TCPShieldMod;
 import gg.drak.tcpshield.utils.exception.phase.CIDRException;
 
 import java.io.File;
@@ -12,17 +12,13 @@ import java.util.*;
  * A CIDR validator for TCPShield
  */
 public class CIDRValidator {
-	private final TCPShieldPlugin plugin;
-
 	private final File ipWhitelistFolder;
 
 	private final List<CIDRMatcher> cidrMatchers;
 	private final Set<String> cache = new HashSet<>(); // Max potential size is equilivent to the amount of whitelisted IP's
 
-	public CIDRValidator(TCPShieldPlugin plugin) throws CIDRException {
-		this.plugin = plugin;
-
-		ipWhitelistFolder = new File(plugin.getConfigProvider().getDataFolder(), "ip-whitelist");
+	public CIDRValidator() throws CIDRException {
+		ipWhitelistFolder = new File(TCPShieldMod.INSTANCE.getConfigProvider().getDataFolder(), "ip-whitelist");
 		if (!ipWhitelistFolder.exists())
 			ipWhitelistFolder.mkdir();
 
@@ -42,8 +38,8 @@ public class CIDRValidator {
 			try {
 				matchers.add(CIDRMatcher.create(whitelist));
 			} catch (Exception e) {
-				plugin.getDebugger().warn("Exception occured while creating CIDRMatcher for \"%s\". Ignoring it.", whitelist);
-				plugin.getDebugger().exception(e);
+				TCPShieldMod.INSTANCE.getDebugger().warn("Exception occured while creating CIDRMatcher for \"%s\". Ignoring it.", whitelist);
+				TCPShieldMod.INSTANCE.getDebugger().exception(e);
 			}
 
 		return matchers;

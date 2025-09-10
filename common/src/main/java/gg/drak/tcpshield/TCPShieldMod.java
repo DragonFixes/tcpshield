@@ -34,23 +34,25 @@ public class TCPShieldMod extends DragonMod implements TCPShieldPlugin {
 
     @Override
     public void onServerStart() {
-        if (INSTANCE == null) INSTANCE = this;
-
         try {
-            CONFIG = new MainConfig(this);
-            DEBUGGER = Debugger.createDebugger(this);
-            PACKET_HANDLER = new TCPShieldPacketHandler(this);
+            CONFIG = new MainConfig();
+            DEBUGGER = Debugger.createDebugger();
+            PACKET_HANDLER = new TCPShieldPacketHandler();
 
             HexInit.init();
 
 //            bukkitImpl.load(); // Not needed for Fabric
 
-            GeyserUtils.initGeyser(this, CONFIG);
+            GeyserUtils.initGeyser(CONFIG);
 
             initialization();
         } catch (Exception e) {
             throw new InitializationException(e);
         }
+    }
+
+    public void set() {
+        INSTANCE = this;
     }
 
     @Override
@@ -71,5 +73,10 @@ public class TCPShieldMod extends DragonMod implements TCPShieldPlugin {
     @Override
     public Debugger getDebugger() {
         return DEBUGGER;
+    }
+
+    @Override
+    public String fallbackIdentifier() {
+        return "tcpshield";
     }
 }

@@ -1,20 +1,21 @@
 package gg.drak.tcpshield.geyser;
 
+import gg.drak.tcpshield.TCPShieldMod;
 import gg.drak.tcpshield.TCPShieldPlugin;
 import org.geysermc.floodgate.api.InstanceHolder;
 
 import java.util.Arrays;
 
-public record GeyserHandshakeHandler(TCPShieldPlugin plugin) {
+public record GeyserHandshakeHandler() {
     public void init() {
         InstanceHolder.getHandshakeHandlers().addHandshakeHandler(data -> {
             if (data.getIp() == null) {
                 // not bedrock
-                this.plugin.getDebugger().warn("Connection with no bedrock data joined and ignored: username = %s, hostname = %s", data.getCorrectUsername(), data.getHostname());
+                TCPShieldMod.INSTANCE.getDebugger().warn("Connection with no bedrock data joined and ignored: username = %s, hostname = %s", data.getCorrectUsername(), data.getHostname());
                 return;
             }
 
-            this.plugin.getDebugger().warn("Bedrock connection joined and validated: username = %s, hostname = %s", data.getCorrectUsername(), data.getHostname());
+            TCPShieldMod.INSTANCE.getDebugger().warn("Bedrock connection joined and validated: username = %s, hostname = %s", data.getCorrectUsername(), data.getHostname());
 
             String oldPayload = data.getHostname();
             if (oldPayload.contains("///")) {
@@ -31,10 +32,10 @@ public record GeyserHandshakeHandler(TCPShieldPlugin plugin) {
             // order to stop bungeecord detecting it as FML data, thanks floodgate.
             String newHostname = realIp + ":0///" + signature + "///" + timestamp + "///" + hostname;
             if (hostname.contains("\0")) { // this is usually fine because FML, providing the hostname is first
-                this.plugin.getDebugger().warn("Hostname contains null byte: " + Arrays.toString(hostname.toCharArray()));
+                TCPShieldMod.INSTANCE.getDebugger().warn("Hostname contains null byte: " + Arrays.toString(hostname.toCharArray()));
             }
 
-            this.plugin.getDebugger().warn("Setting hostname to %s - %s", newHostname, Arrays.toString(newHostname.toCharArray()));
+            TCPShieldMod.INSTANCE.getDebugger().warn("Setting hostname to %s - %s", newHostname, Arrays.toString(newHostname.toCharArray()));
             data.setHostname(newHostname);
         });
     }

@@ -24,8 +24,8 @@ import java.util.stream.Collectors;
 public class HTPDateTimestampValidator extends TimestampValidator {
 	private volatile long htpDateOffset = 0;
 
-	public HTPDateTimestampValidator(TCPShieldPlugin plugin) {
-		super(plugin);
+	public HTPDateTimestampValidator() {
+		super();
 
 		ForkJoinPool.commonPool().execute(() -> {
 			try {

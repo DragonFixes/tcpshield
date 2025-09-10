@@ -6,12 +6,12 @@ import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 
 import org.quiltmc.qsl.lifecycle.api.event.ServerLifecycleEvents;
 
-public final class TCPShieldQuilt implements ModInitializer {
+public final class TCPShieldQuilt extends TCPShieldFabricLike implements ModInitializer {
     @Override
     public void onInitialize(ModContainer mod) {
         // Run the Fabric-like setup.
-        TCPShieldFabricLike.init();
+        init();
 
-        ServerLifecycleEvents.STARTING.register(TCPShieldFabricLike::onServerStart);
+        ServerLifecycleEvents.STARTING.register(this::onServerStart);
     }
 }
