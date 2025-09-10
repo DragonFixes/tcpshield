@@ -6,7 +6,9 @@
   "client": [
   ],
   "mixins": [
-    "HandshakeC2SPacketMixin"
+    "HandshakeC2SPacketMixin",
+    "IClientIntentionPacketAccessor",
+    "ServerHandshakeNetworkHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

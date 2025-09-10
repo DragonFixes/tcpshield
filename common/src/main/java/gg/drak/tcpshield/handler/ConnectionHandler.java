@@ -1,6 +1,6 @@
 package gg.drak.tcpshield.handler;
 
-import gg.drak.tcpshield.mixin.IClientIntensionPacket;
+import gg.drak.tcpshield.mixin.IClientIntentionPacketAccessor;
 import gg.drak.tcpshield.utils.LoggingUtils;
 
 import lombok.Getter;
@@ -67,12 +67,12 @@ public class ConnectionHandler {
         }
     }
 
-    public static void setMaskedAs(String masked, IClientIntensionPacket packet) {
+    public static void setMaskedAs(String masked, IClientIntentionPacketAccessor packet) {
         ConnectionSet maskedSet = new ConnectionSet(packet.tcpshield$getHostName(), packet.tcpshield$getPort());
         addMaskedConnection(maskedSet, masked);
     }
 
-    public static String getMaskedAs(IClientIntensionPacket packet) {
+    public static String getMaskedAs(IClientIntentionPacketAccessor packet) {
         ConnectionSet maskedSet = new ConnectionSet(packet.tcpshield$getHostName(), packet.tcpshield$getPort());
         return getMasked(maskedSet);
     }

@@ -1,20 +1,20 @@
 package gg.drak.tcpshield.handler;
 
+import gg.drak.tcpshield.mixin.IClientIntentionPacketAccessor;
 import gg.drak.thebase.events.components.BaseEvent;
 import lombok.Getter;
 import lombok.Setter;
-import gg.drak.tcpshield.mixin.IClientIntensionPacket;
 import net.minecraft.network.NetworkState;
 
 @Getter @Setter
 public class HandshakeEvent extends BaseEvent {
     public static final String DEFAULT_FAIL_REASON = "Connection failed. Please try again or contact an administrator.";
 
-    private IClientIntensionPacket packet;
+    private IClientIntentionPacketAccessor packet;
     private String failReason;
     private boolean failed;
 
-    public HandshakeEvent(IClientIntensionPacket packet) {
+    public HandshakeEvent(IClientIntentionPacketAccessor packet) {
         super();
 
         this.packet = packet;

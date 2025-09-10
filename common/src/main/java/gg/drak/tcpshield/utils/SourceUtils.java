@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class SourceUtils {
     public static CommandSource getConsoleSource() {
-        return DragonManager.getServer();
+        return DragonManager.getServer().getCommandSource();
     }
 
     public static boolean isValidUuid(String possibleUUID) {
@@ -21,12 +21,12 @@ public class SourceUtils {
         }
     }
 
-    public static Optional<CommandSource> getSenderByName(String thing) {
-        return Optional.ofNullable(DragonManager.getServer().getPlayerList().getPlayerByName(thing));
+    public static Optional<ServerPlayerEntity> getSenderByName(String thing) {
+        return Optional.ofNullable(DragonManager.getServer().getPlayerManager().getPlayer(thing));
     }
 
-    public static Optional<CommandSource> getSenderByUuid(String thing) {
-        return Optional.ofNullable(DragonManager.getServer().getPlayerList().getPlayer(UUID.fromString(thing)));
+    public static Optional<ServerPlayerEntity> getSenderByUuid(String thing) {
+        return Optional.ofNullable(DragonManager.getServer().getPlayerManager().getPlayer(UUID.fromString(thing)));
     }
 
     public static String getAbsolute(CommandSource user) {

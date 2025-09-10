@@ -18,6 +18,7 @@ subprojects {
     apply plugin: 'dev.architectury.loom'
     apply plugin: 'architectury-plugin'
     apply plugin: 'maven-publish'
+    apply plugin: 'com.gradleup.shadow'
     apply plugin: 'io.freefair.lombok'
 
     base {

@@ -120,7 +120,7 @@ public class ColorUtils {
             if (color.getHex().contains("#")) {
                 // Convert hex code to the Minecraft compatible format §x§R§R§G§G§B§B
                 Style style = Style.EMPTY.withColor(color.getFoundColor());
-                component = Text.literal(color.getAfter()).withStyle(style);
+                component = Text.literal(color.getAfter()).styled((s) -> style);
             } else {
                 // Convert directly with the colorizeOneComponent method
                 component = colorizeOneComponent(color.getAfter());
