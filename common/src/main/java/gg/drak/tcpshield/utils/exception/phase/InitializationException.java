@@ -1,12 +1,11 @@
 package gg.drak.tcpshield.utils.exception.phase;
 
-import net.tcpshield.tcpshield.utils.exception.TCPShieldException;
+import gg.drak.tcpshield.utils.exception.TCPShieldException;
 
 /**
  * An exception thrown during the initialization phase of TCPShield
  */
 public class InitializationException extends TCPShieldException {
-
 	public InitializationException(Throwable throwable) {
 		super("An exception occured during the initalization process", throwable);
 	}
@@ -25,5 +24,4 @@ public class InitializationException extends TCPShieldException {
 	public InitializationException() {
 		super();
 	}
-
 }

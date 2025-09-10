@@ -1,6 +1,6 @@
 package gg.drak.tcpshield.utils.validation.timestamp;
 
-import net.tcpshield.tcpshield.TCPShieldPlugin;
+import gg.drak.tcpshield.TCPShieldPlugin;
 
 /**
  * Base for timestamp validators
@@ -57,5 +57,4 @@ public abstract class TimestampValidator {
 	public long getUnixTime() {
 		return System.currentTimeMillis() / 1000;
 	}
-
 }

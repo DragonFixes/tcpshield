@@ -1,18 +1,18 @@
 package gg.drak.tcpshield.handler;
 
-import net.tcpshield.tcpshield.TCPShieldPlugin;
-import net.tcpshield.tcpshield.geyser.GeyserUtils;
-import net.tcpshield.tcpshield.provider.PacketProvider;
-import net.tcpshield.tcpshield.provider.PlayerProvider;
-import net.tcpshield.tcpshield.utils.exception.parse.InvalidPayloadException;
-import net.tcpshield.tcpshield.utils.exception.parse.SignatureValidationException;
-import net.tcpshield.tcpshield.utils.exception.parse.TimestampValidationException;
-import net.tcpshield.tcpshield.utils.exception.phase.HandshakeException;
-import net.tcpshield.tcpshield.utils.exception.phase.InvalidSecretException;
-import net.tcpshield.tcpshield.utils.validation.SignatureValidator;
-import net.tcpshield.tcpshield.utils.validation.cidr.CIDRValidator;
-import net.tcpshield.tcpshield.utils.validation.timestamp.HTPDateTimestampValidator;
-import net.tcpshield.tcpshield.utils.validation.timestamp.TimestampValidator;
+import gg.drak.tcpshield.TCPShieldPlugin;
+import gg.drak.tcpshield.geyser.GeyserUtils;
+import gg.drak.tcpshield.provider.PacketProvider;
+import gg.drak.tcpshield.provider.PlayerProvider;
+import gg.drak.tcpshield.utils.exception.parse.InvalidPayloadException;
+import gg.drak.tcpshield.utils.exception.parse.SignatureValidationException;
+import gg.drak.tcpshield.utils.exception.parse.TimestampValidationException;
+import gg.drak.tcpshield.utils.exception.phase.HandshakeException;
+import gg.drak.tcpshield.utils.exception.phase.InvalidSecretException;
+import gg.drak.tcpshield.utils.validation.SignatureValidator;
+import gg.drak.tcpshield.utils.validation.cidr.CIDRValidator;
+import gg.drak.tcpshield.utils.validation.timestamp.HTPDateTimestampValidator;
+import gg.drak.tcpshield.utils.validation.timestamp.TimestampValidator;
 
 import java.io.IOException;
 import java.net.InetAddress;

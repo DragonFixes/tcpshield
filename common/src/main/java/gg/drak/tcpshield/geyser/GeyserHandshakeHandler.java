@@ -1,49 +1,41 @@
 package gg.drak.tcpshield.geyser;
 
-import net.tcpshield.tcpshield.TCPShieldPlugin;
+import gg.drak.tcpshield.TCPShieldPlugin;
 import org.geysermc.floodgate.api.InstanceHolder;
 
 import java.util.Arrays;
 
-public class GeyserHandshakeHandler {
+public record GeyserHandshakeHandler(TCPShieldPlugin plugin) {
+    public void init() {
+        InstanceHolder.getHandshakeHandlers().addHandshakeHandler(data -> {
+            if (data.getIp() == null) {
+                // not bedrock
+                this.plugin.getDebugger().warn("Connection with no bedrock data joined and ignored: username = %s, hostname = %s", data.getCorrectUsername(), data.getHostname());
+                return;
+            }
 
-	private final TCPShieldPlugin plugin;
+            this.plugin.getDebugger().warn("Bedrock connection joined and validated: username = %s, hostname = %s", data.getCorrectUsername(), data.getHostname());
 
-	public GeyserHandshakeHandler(TCPShieldPlugin plugin) {
-		this.plugin = plugin;
-	}
+            String oldPayload = data.getHostname();
+            if (oldPayload.contains("///")) {
+                oldPayload = oldPayload.split("///")[0];
+            }
 
-	public void init() {
-		InstanceHolder.getHandshakeHandlers().addHandshakeHandler(data -> {
-			if (data.getIp() == null) {
-				// not bedrock
-				this.plugin.getDebugger().warn("Connection with no bedrock data joined and ignored: username = %s, hostname = %s", data.getCorrectUsername(), data.getHostname());
-				return;
-			}
+            String hostname = oldPayload;
+            String realIp = data.getIp();
+            String timestamp = "0";
+            String signature = GeyserUtils.SESSION_SECRET;
 
-			this.plugin.getDebugger().warn("Bedrock connection joined and validated: username = %s, hostname = %s", data.getCorrectUsername(), data.getHostname());
+            // so floodgate likes to append "\0Floodgate\0" or something stupid to the hostname
+            // which just completely breaks this, so we have to pass these in a different
+            // order to stop bungeecord detecting it as FML data, thanks floodgate.
+            String newHostname = realIp + ":0///" + signature + "///" + timestamp + "///" + hostname;
+            if (hostname.contains("\0")) { // this is usually fine because FML, providing the hostname is first
+                this.plugin.getDebugger().warn("Hostname contains null byte: " + Arrays.toString(hostname.toCharArray()));
+            }
 
-			String oldPayload = data.getHostname();
-			if (oldPayload.contains("///")) {
-				oldPayload = oldPayload.split("///")[0];
-			}
-
-			String hostname = oldPayload;
-			String realIp = data.getIp();
-			String timestamp = "0";
-			String signature = GeyserUtils.SESSION_SECRET;
-
-			// so floodgate likes to append "\0Floodgate\0" or something stupid to the hostname
-			// which just completely breaks this, so we have to pass these in a different
-			// order to stop bungeecord detecting it as FML data, thanks floodgate.
-			String newHostname = realIp + ":0///" + signature + "///" + timestamp + "///" + hostname;
-			if (hostname.contains("\0")) { // this is usually fine because FML, providing the hostname is first
-				this.plugin.getDebugger().warn("Hostname contains null byte: " + Arrays.toString(hostname.toCharArray()));
-			}
-
-			this.plugin.getDebugger().warn("Setting hostname to %s - %s", newHostname, Arrays.toString(newHostname.toCharArray()));
-			data.setHostname(newHostname);
-		});
-	}
-
+            this.plugin.getDebugger().warn("Setting hostname to %s - %s", newHostname, Arrays.toString(newHostname.toCharArray()));
+            data.setHostname(newHostname);
+        });
+    }
 }

@@ -2,7 +2,7 @@ package gg.drak.tcpshield.text;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.network.chat.TextColor;
+import net.minecraft.text.TextColor;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -10,8 +10,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Getter
-@Setter
+@Getter @Setter
 public class IndexedColor implements Comparable<IndexedColor> {
     private int startOfThis;
     private int endOfThis;

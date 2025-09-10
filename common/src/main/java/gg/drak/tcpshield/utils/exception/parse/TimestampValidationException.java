@@ -1,13 +1,12 @@
 package gg.drak.tcpshield.utils.exception.parse;
 
-import net.tcpshield.tcpshield.utils.exception.phase.HandshakeException;
-import net.tcpshield.tcpshield.utils.validation.timestamp.TimestampValidator;
+import gg.drak.tcpshield.utils.exception.phase.HandshakeException;
+import gg.drak.tcpshield.utils.validation.timestamp.TimestampValidator;
 
 /**
  * An exception thrown when a handshake packet failed timestamp validation
  */
 public class TimestampValidationException extends HandshakeException {
-
 	private final TimestampValidator timestampValidator;
 	private final long timestamp;
 
@@ -26,5 +25,4 @@ public class TimestampValidationException extends HandshakeException {
 	public long getTimestamp() {
 		return timestamp;
 	}
-
 }

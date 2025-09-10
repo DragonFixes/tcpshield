@@ -3,7 +3,7 @@ package gg.drak.tcpshield.configs;
 import gg.drak.thebase.lib.leonhard.storage.sections.FlatFileSection;
 import lombok.Getter;
 import lombok.Setter;
-import net.tcpshield.tcpshield.TCPShieldMod;
+import gg.drak.tcpshield.TCPShieldMod;
 
 @Getter @Setter
 public class LoggingConfig {

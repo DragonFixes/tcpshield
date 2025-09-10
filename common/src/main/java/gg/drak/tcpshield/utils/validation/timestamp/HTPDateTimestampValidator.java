@@ -1,7 +1,7 @@
 package gg.drak.tcpshield.utils.validation.timestamp;
 
-import net.tcpshield.tcpshield.TCPShieldPlugin;
-import net.tcpshield.tcpshield.utils.exception.phase.InitializationException;
+import gg.drak.tcpshield.TCPShieldPlugin;
+import gg.drak.tcpshield.utils.exception.phase.InitializationException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
  * tiemstamps
  */
 public class HTPDateTimestampValidator extends TimestampValidator {
-
 	private volatile long htpDateOffset = 0;
 
 	public HTPDateTimestampValidator(TCPShieldPlugin plugin) {
@@ -75,5 +74,4 @@ public class HTPDateTimestampValidator extends TimestampValidator {
 	public long getUnixTime() {
 		return (System.currentTimeMillis() + htpDateOffset) / 1000;
 	}
-
 }

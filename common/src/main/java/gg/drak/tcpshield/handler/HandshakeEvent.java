@@ -3,8 +3,8 @@ package gg.drak.tcpshield.handler;
 import gg.drak.thebase.events.components.BaseEvent;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.network.ConnectionProtocol;
-import net.tcpshield.tcpshield.mixin.IClientIntensionPacket;
+import gg.drak.tcpshield.mixin.IClientIntensionPacket;
+import net.minecraft.network.NetworkState;
 
 @Getter @Setter
 public class HandshakeEvent extends BaseEvent {
@@ -34,7 +34,7 @@ public class HandshakeEvent extends BaseEvent {
         return packet.tcpshield$getProtocolVersion();
     }
 
-    public ConnectionProtocol getProtocol() {
+    public NetworkState getProtocol() {
         return packet.tcpshield$getIntention();
     }
 

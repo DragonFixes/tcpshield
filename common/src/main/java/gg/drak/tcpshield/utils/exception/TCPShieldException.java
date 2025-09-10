@@ -4,7 +4,6 @@ package gg.drak.tcpshield.utils.exception;
  * Outline for TCPShield exceptions
  */
 public abstract class TCPShieldException extends RuntimeException {
-
 	public TCPShieldException(Throwable throwable) {
 		super(throwable);
 	}
@@ -23,5 +22,4 @@ public abstract class TCPShieldException extends RuntimeException {
 	public TCPShieldException() {
 		super();
 	}
-
 }

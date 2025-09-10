@@ -1,12 +1,11 @@
 package gg.drak.tcpshield.utils.exception.config;
 
-import net.tcpshield.tcpshield.utils.exception.phase.ConfigException;
+import gg.drak.tcpshield.utils.exception.phase.ConfigException;
 
 /**
  * An exception thrown during the reloading phase of the config process
  */
 public class ConfigReloadException extends ConfigException {
-
 	public ConfigReloadException(Throwable throwable) {
 		super(throwable);
 	}
@@ -25,5 +24,4 @@ public class ConfigReloadException extends ConfigException {
 	public ConfigReloadException() {
 		super();
 	}
-
 }

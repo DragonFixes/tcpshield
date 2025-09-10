@@ -2,68 +2,45 @@ package gg.drak.tcpshield.provider;
 
 import gg.drak.thebase.objects.handling.derived.ModEventable;
 import gg.drak.thebase.storage.resources.flat.simple.SimpleConfiguration;
-import net.tcpshield.tcpshield.utils.exception.config.ConfigLoadException;
-import net.tcpshield.tcpshield.utils.exception.config.ConfigReloadException;
-import net.tcpshield.tcpshield.utils.exception.config.ConfigResetException;
-import net.tcpshield.tcpshield.utils.exception.phase.ConfigException;
+import gg.drak.tcpshield.utils.exception.config.ConfigLoadException;
+import gg.drak.tcpshield.utils.exception.config.ConfigReloadException;
+import gg.drak.tcpshield.utils.exception.config.ConfigResetException;
+import gg.drak.tcpshield.utils.exception.phase.ConfigException;
+import lombok.Getter;
 
 import java.io.File;
 
 /**
  * An abstract provider for TCPShield's options.
  */
+@Getter
 public abstract class ConfigProvider extends SimpleConfiguration {
-
 	/*
 	 * Configuration options
 	 */
-	protected boolean onlyProxy = true;
-	protected String timestampValidationMode = "htpdate";
+    protected boolean onlyProxy = true;
+    protected String timestampValidationMode = "htpdate";
 	protected boolean doDebug = true; // Fail-safe default set to true
-	protected boolean geyser = false;
+    protected boolean geyser = false;
 
-	protected File dataFolder;
-	protected File configFile;
+    protected File dataFolder;
+    protected File configFile;
 
 	public ConfigProvider(String fileName, ModEventable eventable, boolean selfContained) {
 		super(fileName, eventable, selfContained);
 	}
 
-	public boolean isOnlyProxy() {
-		return this.onlyProxy;
-	}
-
-	public boolean isGeyser() {
-		return this.geyser;
-	}
-
-	public String getTimestampValidationMode() {
-		return this.timestampValidationMode;
-	}
-
-	public boolean doDebug() {
+    public boolean doDebug() {
 		return this.doDebug;
 	}
 
-	public File getDataFolder() {
-		return dataFolder;
-	}
-
-	public File getConfigFile() {
-		return configFile;
-	}
-
-	/*
+    /*
 	 * Plugin Constants
 	 */
-	protected final long maxTimestampDifference = 3; // In Unix Timesteps (Seconds)
+	@Getter
+    protected final long maxTimestampDifference = 3; // In Unix Timesteps (Seconds)
 
-
-	public long getMaxTimestampDifference() {
-		return maxTimestampDifference;
-	}
-
-	/*
+    /*
 	 * Required methods
 	 */
 
@@ -91,5 +68,4 @@ public abstract class ConfigProvider extends SimpleConfiguration {
 	 * @throws ConfigException Thrown when a node isnt found
 	 */
 	protected abstract void checkNodes(String... nodes) throws ConfigException;
-
 }

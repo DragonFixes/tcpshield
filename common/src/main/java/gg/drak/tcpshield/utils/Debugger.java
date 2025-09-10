@@ -1,6 +1,6 @@
 package gg.drak.tcpshield.utils;
 
-import net.tcpshield.tcpshield.TCPShieldPlugin;
+import gg.drak.tcpshield.TCPShieldPlugin;
 import org.slf4j.Logger;
 
 /**

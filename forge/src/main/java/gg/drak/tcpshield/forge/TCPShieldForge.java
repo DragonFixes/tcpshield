@@ -1,7 +1,7 @@
 package gg.drak.tcpshield.forge;
 
-import net.tcpshield.tcpshield.TCPShieldMod;
-import net.tcpshield.tcpshield.eventables.DragonManager;
+import gg.drak.tcpshield.TCPShieldMod;
+import gg.drak.tcpshield.eventables.DragonManager;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraftforge.fml.common.Mod;

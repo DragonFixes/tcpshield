@@ -1,12 +1,11 @@
 package gg.drak.tcpshield.utils.exception.phase;
 
-import net.tcpshield.tcpshield.utils.exception.TCPShieldException;
+import gg.drak.tcpshield.utils.exception.TCPShieldException;
 
 /**
  * An exception thrown during the handshake handling of TCPShield
  */
 public class HandshakeException extends TCPShieldException {
-
 	public HandshakeException(Throwable throwable) {
 		super("An exception occured during the handshake process", throwable);
 	}
@@ -25,5 +24,4 @@ public class HandshakeException extends TCPShieldException {
 	public HandshakeException() {
 		super();
 	}
-
 }

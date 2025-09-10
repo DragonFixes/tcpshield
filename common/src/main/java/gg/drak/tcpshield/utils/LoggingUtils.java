@@ -1,8 +1,8 @@
 package gg.drak.tcpshield.utils;
 
-import net.tcpshield.tcpshield.configs.LoggingConfig;
-import net.minecraft.network.chat.Component;
-import net.tcpshield.tcpshield.eventables.DragonManager;
+import gg.drak.tcpshield.configs.LoggingConfig;
+import gg.drak.tcpshield.eventables.DragonManager;
+import net.minecraft.text.Text;
 
 public class LoggingUtils {
     public static void logSystem(String message) {
@@ -11,8 +11,8 @@ public class LoggingUtils {
 
     public static void logSingle(String message) {
         try {
-            Component component = ColorUtils.colorizeToComponent(message);
-            DragonManager.getServer().sendSystemMessage(component);
+            Text component = ColorUtils.colorizeToComponent(message);
+            DragonManager.getServer().sendMessage(component);
         } catch (NullPointerException npe) {
             logSystem(message);
         } catch (Exception e) {

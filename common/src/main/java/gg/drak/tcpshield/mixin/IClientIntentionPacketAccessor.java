@@ -1,14 +1,14 @@
 package gg.drak.tcpshield.mixin;
 
-import net.minecraft.network.ConnectionProtocol;
-import net.minecraft.network.protocol.handshake.ClientIntentionPacket;
+import net.minecraft.network.NetworkState;
+import net.minecraft.network.packet.c2s.handshake.HandshakeC2SPacket;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(ClientIntentionPacket.class)
+@Mixin(HandshakeC2SPacket.class)
 public interface IClientIntentionPacketAccessor extends IClientIntensionPacket {
-    @Accessor("hostName")
+    @Accessor("address")
     @Final
     String tcpshield$getHostName();
 
@@ -20,7 +20,7 @@ public interface IClientIntentionPacketAccessor extends IClientIntensionPacket {
     @Final
     int tcpshield$getProtocolVersion();
 
-    @Accessor("intention")
+    @Accessor("intendedState")
     @Final
-    ConnectionProtocol tcpshield$getIntention();
+    NetworkState tcpshield$getIntention();
 }

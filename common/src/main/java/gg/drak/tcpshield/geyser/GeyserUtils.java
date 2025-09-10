@@ -1,12 +1,11 @@
 package gg.drak.tcpshield.geyser;
 
-import net.tcpshield.tcpshield.TCPShieldPlugin;
-import net.tcpshield.tcpshield.provider.ConfigProvider;
+import gg.drak.tcpshield.TCPShieldPlugin;
+import gg.drak.tcpshield.provider.ConfigProvider;
 
 import java.util.UUID;
 
 public class GeyserUtils {
-
 	public static final String SESSION_SECRET = UUID.randomUUID().toString();
 	public static boolean GEYSER_SUPPORT_ENABLED = false;
 
@@ -29,5 +28,4 @@ public class GeyserUtils {
 			return false;
 		}
 	}
-
 }

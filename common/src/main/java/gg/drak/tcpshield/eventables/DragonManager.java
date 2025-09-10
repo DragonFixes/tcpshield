@@ -3,9 +3,9 @@ package gg.drak.tcpshield.eventables;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerPlayer;
-import net.tcpshield.tcpshield.configs.LoggingConfig;
-import net.tcpshield.tcpshield.utils.LoggingUtils;
+import gg.drak.tcpshield.configs.LoggingConfig;
+import gg.drak.tcpshield.utils.LoggingUtils;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.io.File;
 import java.util.Arrays;
@@ -96,15 +96,15 @@ public class DragonManager {
         }
     }
 
-    public static List<ServerPlayer> getOnlinePlayers() {
-        return server.getPlayerList().getPlayers();
+    public static List<ServerPlayerEntity> getOnlinePlayers() {
+        return server.getPlayerManager().getPlayerList();
     }
 
-    public static ConcurrentSkipListMap<String, ServerPlayer> getOnlinePlayersByUUID() {
-        ConcurrentSkipListMap<String, ServerPlayer> players = new ConcurrentSkipListMap<>();
+    public static ConcurrentSkipListMap<String, ServerPlayerEntity> getOnlinePlayersByUUID() {
+        ConcurrentSkipListMap<String, ServerPlayerEntity> players = new ConcurrentSkipListMap<>();
 
         getOnlinePlayers().forEach(player -> {
-            players.put(player.getUUID().toString(), player);
+            players.put(player.getUuid().toString(), player);
         });
 
         return players;

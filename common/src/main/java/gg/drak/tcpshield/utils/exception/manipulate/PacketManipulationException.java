@@ -1,12 +1,11 @@
 package gg.drak.tcpshield.utils.exception.manipulate;
 
-import net.tcpshield.tcpshield.utils.exception.phase.HandshakeException;
+import gg.drak.tcpshield.utils.exception.phase.HandshakeException;
 
 /**
  * An exception thrown during packet manipulation
  */
 public class PacketManipulationException extends HandshakeException {
-
 	public PacketManipulationException(Throwable throwable) {
 		super(throwable);
 	}
@@ -25,5 +24,4 @@ public class PacketManipulationException extends HandshakeException {
 	public PacketManipulationException() {
 		super();
 	}
-
 }

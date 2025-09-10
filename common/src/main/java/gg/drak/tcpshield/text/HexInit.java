@@ -1,6 +1,6 @@
 package gg.drak.tcpshield.text;
 
-import net.tcpshield.tcpshield.utils.LoggingUtils;
+import gg.drak.tcpshield.utils.LoggingUtils;
 
 public class HexInit {
     public static void init() {

@@ -1,32 +1,24 @@
 package gg.drak.tcpshield.handler;
 
-import net.tcpshield.tcpshield.provider.PacketProvider;
-import net.tcpshield.tcpshield.utils.exception.manipulate.PacketManipulationException;
+import gg.drak.tcpshield.provider.PacketProvider;
+import gg.drak.tcpshield.utils.exception.manipulate.PacketManipulationException;
 
 /**
  * A packet wrapper for PaperSpigot
  */
-public class TCPShieldPacket implements PacketProvider {
+public record TCPShieldPacket(HandshakeEvent event) implements PacketProvider {
+    @Override
+    public String getPayloadString() {
+        return event.getHostname();
+    }
 
-	private final HandshakeEvent event;
-
-	public TCPShieldPacket(HandshakeEvent event) {
-		this.event = event;
-	}
-
-	@Override
-	public String getPayloadString() {
-		return event.getHostname();
-	}
-
-	@Override
-	public void setPacketHostname(String hostname) throws PacketManipulationException {
-		try {
-			event.setCancelled(false);
-			event.setServerHostname(hostname);
-		} catch (Exception e) {
-			throw new PacketManipulationException(e);
-		}
-	}
-
+    @Override
+    public void setPacketHostname(String hostname) throws PacketManipulationException {
+        try {
+            event.setCancelled(false);
+            event.setServerHostname(hostname);
+        } catch (Exception e) {
+            throw new PacketManipulationException(e);
+        }
+    }
 }

@@ -9,8 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-@Setter
-@Getter
+@Setter @Getter
 public class HexReplacer implements Comparable<HexReplacer> {
     public static final String HEX_REGEX = "([0-9a-fA-F]{6})";
     public static final String FULL_REGEX = "((%starter%)" + HEX_REGEX + "(%ender%))";

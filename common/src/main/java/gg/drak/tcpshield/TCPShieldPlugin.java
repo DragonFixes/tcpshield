@@ -1,8 +1,8 @@
 package gg.drak.tcpshield;
 
-import net.tcpshield.tcpshield.handler.TCPShieldPacketHandler;
-import net.tcpshield.tcpshield.provider.ConfigProvider;
-import net.tcpshield.tcpshield.utils.Debugger;
+import gg.drak.tcpshield.handler.TCPShieldPacketHandler;
+import gg.drak.tcpshield.provider.ConfigProvider;
+import gg.drak.tcpshield.utils.Debugger;
 import org.slf4j.Logger;
 
 /**

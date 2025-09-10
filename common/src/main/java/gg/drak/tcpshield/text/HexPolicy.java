@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
-@Getter
-@Setter
+@Getter @Setter
 public class HexPolicy implements Comparable<HexPolicy> {
     private String starter;
     private String ender;

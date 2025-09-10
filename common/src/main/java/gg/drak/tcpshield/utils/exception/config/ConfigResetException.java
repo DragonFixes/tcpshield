@@ -1,12 +1,11 @@
 package gg.drak.tcpshield.utils.exception.config;
 
-import net.tcpshield.tcpshield.utils.exception.phase.ConfigException;
+import gg.drak.tcpshield.utils.exception.phase.ConfigException;
 
 /**
  * An exception thrown during the resetting phase of the config process
  */
 public class ConfigResetException extends ConfigException {
-
 	public ConfigResetException(Throwable throwable) {
 		super(throwable);
 	}
@@ -25,5 +24,4 @@ public class ConfigResetException extends ConfigException {
 	public ConfigResetException() {
 		super();
 	}
-
 }

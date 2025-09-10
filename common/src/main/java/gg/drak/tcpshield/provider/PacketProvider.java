@@ -1,12 +1,11 @@
 package gg.drak.tcpshield.provider;
 
-import net.tcpshield.tcpshield.utils.exception.manipulate.PacketManipulationException;
+import gg.drak.tcpshield.utils.exception.manipulate.PacketManipulationException;
 
 /**
  * A packet provider for TCPShield handling
  */
 public interface PacketProvider {
-
 	/**
 	 * Gets the raw payload from the packet
 	 * @return The raw payload in the form of a String
@@ -18,5 +17,4 @@ public interface PacketProvider {
 	 * @param hostname The new hostname
 	 */
 	void setPacketHostname(String hostname) throws PacketManipulationException;
-
 }

@@ -1,11 +1,11 @@
 package gg.drak.tcpshield.utils;
 
 import gg.drak.thebase.objects.AtomicString;
-import net.tcpshield.tcpshield.text.IndexedColor;
-import net.tcpshield.tcpshield.text.TextManager;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
+import gg.drak.tcpshield.text.IndexedColor;
+import gg.drak.tcpshield.text.TextManager;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,12 +66,12 @@ public class ColorUtils {
     }
 
     // Handles both legacy and hex color codes, converting them to a MutableComponent
-    public static MutableComponent colorizeToComponent(String from) {
+    public static MutableText colorizeToComponent(String from) {
         String raw = colorizeHard(from); // Converts legacy codes like &e to Minecraft color codes (§e)
-        MutableComponent component = Component.empty();
-        List<MutableComponent> componentsList = colorizeHex(raw);
+        MutableText component = Text.empty();
+        List<MutableText> componentsList = colorizeHex(raw);
 
-        for (Component c : componentsList) {
+        for (Text c : componentsList) {
             component = component.append(c);
         }
 
@@ -79,10 +79,10 @@ public class ColorUtils {
     }
 
     // Converts a string with hex and legacy color codes to a list of MutableComponents
-    public static List<MutableComponent> colorizeHex(String from) {
+    public static List<MutableText> colorizeHex(String from) {
         String raw = colorizeHard(from); // Converts legacy codes like &e to Minecraft color codes (§e)
         AtomicString runningString = new AtomicString(raw);
-        List<MutableComponent> toReturn = new ArrayList<>();
+        List<MutableText> toReturn = new ArrayList<>();
         ConcurrentSkipListSet<IndexedColor> indexedColors = new ConcurrentSkipListSet<>();
 
         // Extract and create IndexedColor objects from the input string
@@ -116,11 +116,11 @@ public class ColorUtils {
             }
 
             // Create a style for the hex color or directly use Minecraft color codes
-            MutableComponent component;
+            MutableText component;
             if (color.getHex().contains("#")) {
                 // Convert hex code to the Minecraft compatible format §x§R§R§G§G§B§B
                 Style style = Style.EMPTY.withColor(color.getFoundColor());
-                component = Component.literal(color.getAfter()).withStyle(style);
+                component = Text.literal(color.getAfter()).withStyle(style);
             } else {
                 // Convert directly with the colorizeOneComponent method
                 component = colorizeOneComponent(color.getAfter());
@@ -140,8 +140,8 @@ public class ColorUtils {
     }
 
     // Converts a string to a single MutableComponent using legacy color codes
-    public static MutableComponent colorizeOneComponent(String from) {
+    public static MutableText colorizeOneComponent(String from) {
         String replaced = colorizeHard(from); // Converts & codes to Minecraft's § codes
-        return Component.literal(replaced);
+        return Text.literal(replaced);
     }
 }

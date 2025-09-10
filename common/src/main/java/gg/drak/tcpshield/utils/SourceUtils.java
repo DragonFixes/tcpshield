@@ -1,8 +1,8 @@
 package gg.drak.tcpshield.utils;
 
-import net.minecraft.commands.CommandSource;
-import net.minecraft.server.level.ServerPlayer;
-import net.tcpshield.tcpshield.eventables.DragonManager;
+import gg.drak.tcpshield.eventables.DragonManager;
+import net.minecraft.command.CommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -31,8 +31,8 @@ public class SourceUtils {
 
     public static String getAbsolute(CommandSource user) {
         if (user == null) return "";
-        if (! (user instanceof ServerPlayer)) return "CONSOLE";
+        if (! (user instanceof ServerPlayerEntity)) return "CONSOLE";
 
-        return ((ServerPlayer) user).getName().getString();
+        return ((ServerPlayerEntity) user).getName().getString();
     }
 }

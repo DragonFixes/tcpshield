@@ -1,7 +1,8 @@
 plugins {
-    id 'dev.architectury.loom' version '1.11-SNAPSHOT' apply false
+    id 'dev.architectury.loom' version '1.10-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
     id 'com.gradleup.shadow' version '8.3.6' apply false
+    id 'io.freefair.lombok' version "5.3.0" apply false
 }
 
 architectury {
@@ -17,6 +18,7 @@ subprojects {
     apply plugin: 'dev.architectury.loom'
     apply plugin: 'architectury-plugin'
     apply plugin: 'maven-publish'
+    apply plugin: 'io.freefair.lombok'
 
     base {
         // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
@@ -29,11 +31,22 @@ subprojects {
         // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
         // See https://docs.gradle.org/current/userguide/declaring_repositories.html
         // for more information about repositories.
+
+        mavenCentral()
+        mavenLocal()
+        maven { url "https://mvnrepository.com/artifact" }
+        // JitPack
+        maven { url "https://jitpack.io" }
+        // OpenCollab
+        maven {url "https://repo.opencollab.dev/main/" }
     }
 
     dependencies {
         minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
         mappings "net.fabricmc:yarn:$rootProject.yarn_mappings:v2"
+
+        compileOnly 'org.projectlombok:lombok:1.18.40'
+        annotationProcessor 'org.projectlombok:lombok:1.18.40'
     }
 
     java {

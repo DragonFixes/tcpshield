@@ -1,7 +1,7 @@
 package gg.drak.tcpshield.utils.validation.cidr;
 
-import net.tcpshield.tcpshield.TCPShieldPlugin;
-import net.tcpshield.tcpshield.utils.exception.phase.CIDRException;
+import gg.drak.tcpshield.TCPShieldPlugin;
+import gg.drak.tcpshield.utils.exception.phase.CIDRException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +12,6 @@ import java.util.*;
  * A CIDR validator for TCPShield
  */
 public class CIDRValidator {
-
 	private final TCPShieldPlugin plugin;
 
 	private final File ipWhitelistFolder;
@@ -87,5 +86,4 @@ public class CIDRValidator {
 
 		return false;
 	}
-
 }

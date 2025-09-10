@@ -1,12 +1,12 @@
 package gg.drak.tcpshield;
 
-import net.tcpshield.tcpshield.configs.MainConfig;
-import net.tcpshield.tcpshield.eventables.DragonMod;
-import net.tcpshield.tcpshield.geyser.GeyserUtils;
-import net.tcpshield.tcpshield.handler.TCPShieldPacketHandler;
-import net.tcpshield.tcpshield.text.HexInit;
-import net.tcpshield.tcpshield.utils.Debugger;
-import net.tcpshield.tcpshield.utils.exception.phase.InitializationException;
+import gg.drak.tcpshield.configs.MainConfig;
+import gg.drak.tcpshield.eventables.DragonMod;
+import gg.drak.tcpshield.geyser.GeyserUtils;
+import gg.drak.tcpshield.handler.TCPShieldPacketHandler;
+import gg.drak.tcpshield.text.HexInit;
+import gg.drak.tcpshield.utils.Debugger;
+import gg.drak.tcpshield.utils.exception.phase.InitializationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +14,7 @@ public class TCPShieldMod extends DragonMod implements TCPShieldPlugin {
     public static TCPShieldMod INSTANCE;
 
     public static final Logger LOGGER = LoggerFactory.getLogger("TCPShield");
-    public static final String MOD_ID = "tcpshield";
+    public static final String MOD_ID = "assets/tcpshield";
 
     private static MainConfig CONFIG;
 

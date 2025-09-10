@@ -2,7 +2,7 @@ package gg.drak.tcpshield.text;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.tcpshield.tcpshield.utils.LoggingUtils;
+import gg.drak.tcpshield.utils.LoggingUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,8 +11,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Getter
-@Setter
+@Getter @Setter
 public class TextManager {
     @Getter @Setter
     private static ConcurrentSkipListSet<HexPolicy> hexPolicies = new ConcurrentSkipListSet<>();

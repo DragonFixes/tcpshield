@@ -1,9 +1,8 @@
 package gg.drak.tcpshield.utils.exception.phase;
 
-import net.tcpshield.tcpshield.utils.exception.TCPShieldException;
+import gg.drak.tcpshield.utils.exception.TCPShieldException;
 
 public class InvalidSecretException extends TCPShieldException {
-
 	public InvalidSecretException(Throwable throwable) {
 		super("An invalid secret was provided during the geyser handshake process", throwable);
 	}
@@ -22,5 +21,4 @@ public class InvalidSecretException extends TCPShieldException {
 	public InvalidSecretException() {
 		super();
 	}
-
 }

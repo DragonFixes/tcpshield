@@ -1,20 +1,15 @@
 package gg.drak.tcpshield.handler;
 
-import net.tcpshield.tcpshield.provider.PlayerProvider;
-import net.tcpshield.tcpshield.utils.exception.manipulate.PlayerManipulationException;
+import gg.drak.tcpshield.provider.PlayerProvider;
+import gg.drak.tcpshield.utils.exception.manipulate.PlayerManipulationException;
 
 import java.net.InetSocketAddress;
 import java.util.UUID;
 
-public class TCPShieldPlayer implements PlayerProvider {
-    private final HandshakeEvent event;
-
-    public TCPShieldPlayer(HandshakeEvent event) {
-        this.event = event;
-    }
-
+public record TCPShieldPlayer(HandshakeEvent event) implements PlayerProvider {
     /**
      * Trys to grab the UUID of the handshake
+     *
      * @return If found, the corrosponding uuid, if not, unknown
      */
     @Override
@@ -29,6 +24,7 @@ public class TCPShieldPlayer implements PlayerProvider {
 
     /**
      * Unsupported with Paper handshakes
+     *
      * @return unknown
      */
     @Override

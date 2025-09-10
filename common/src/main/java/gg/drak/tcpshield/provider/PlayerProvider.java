@@ -1,6 +1,6 @@
 package gg.drak.tcpshield.provider;
 
-import net.tcpshield.tcpshield.utils.exception.manipulate.PlayerManipulationException;
+import gg.drak.tcpshield.utils.exception.manipulate.PlayerManipulationException;
 
 import java.net.InetSocketAddress;
 
@@ -8,7 +8,6 @@ import java.net.InetSocketAddress;
  * A player provider for TCPShield handling
  */
 public interface PlayerProvider {
-
 	String getUUID();
 
 	String getName();
@@ -23,5 +22,4 @@ public interface PlayerProvider {
 	void setIP(InetSocketAddress ip) throws PlayerManipulationException;
 
 	void disconnect();
-
 }

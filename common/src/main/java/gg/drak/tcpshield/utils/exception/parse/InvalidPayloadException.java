@@ -1,12 +1,11 @@
 package gg.drak.tcpshield.utils.exception.parse;
 
-import net.tcpshield.tcpshield.utils.exception.phase.HandshakeException;
+import gg.drak.tcpshield.utils.exception.phase.HandshakeException;
 
 /**
  * An exception thrown when a handshake packet has invalid payload data
  */
 public class InvalidPayloadException extends HandshakeException {
-
 	public InvalidPayloadException(Throwable throwable) {
 		super(throwable);
 	}
@@ -25,5 +24,4 @@ public class InvalidPayloadException extends HandshakeException {
 	public InvalidPayloadException() {
 		super();
 	}
-
 }

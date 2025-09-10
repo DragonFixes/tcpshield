@@ -1,17 +1,18 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
-#issueTrackerURL = ""
+issueTrackerURL = "https://github.com/DragonFixes/tcpshield/issues"
 license = "Insert License Here"
 
 [[mods]]
 modId = "tcpshield"
 version = "${version}"
-displayName = "tcpshield"
-authors = "Me!"
+displayName = "TCPShield"
+authors = "Drak"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+TCPShield support for Forge.
 '''
-#logoFile = ""
+logoFile = "assets/tcpshield/icon.png"
+credits = "Thanks to TCPShield for creating the service and allowing me to make this mod."
 
 [[dependencies.tcpshield]]
 modId = "forge"
@@ -29,7 +30,21 @@ side = "BOTH"
 
 [[dependencies.tcpshield]]
 modId = "architectury"
-mandatory = true
+mandatory = false
 versionRange = "[9.2.14,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.tcpshield]]
+modId = "geyser"
+mandatory = false
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.tcpshield]]
+modId = "floodgate"
+mandatory = false
+versionRange = "*"
 ordering = "AFTER"
 side = "BOTH"

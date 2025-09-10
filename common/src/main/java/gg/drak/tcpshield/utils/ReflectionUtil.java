@@ -2,7 +2,7 @@ package gg.drak.tcpshield.utils;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import net.tcpshield.tcpshield.utils.exception.phase.ReflectionException;
+import gg.drak.tcpshield.utils.exception.phase.ReflectionException;
 
 import java.lang.reflect.Field;
 

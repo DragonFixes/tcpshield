@@ -1,6 +1,6 @@
 package gg.drak.tcpshield.mixin;
 
-import net.minecraft.network.ConnectionProtocol;
+import net.minecraft.network.NetworkState;
 
 public interface IClientIntensionPacket {
     String tcpshield$getHostName();
@@ -9,5 +9,5 @@ public interface IClientIntensionPacket {
 
     int tcpshield$getProtocolVersion();
 
-    ConnectionProtocol tcpshield$getIntention();
+    NetworkState tcpshield$getIntention();
 }

@@ -1,9 +1,10 @@
 package gg.drak.tcpshield.handler;
 
+import gg.drak.tcpshield.mixin.IClientIntensionPacket;
+import gg.drak.tcpshield.utils.LoggingUtils;
+
 import lombok.Getter;
 import lombok.Setter;
-import net.tcpshield.tcpshield.mixin.IClientIntensionPacket;
-import net.tcpshield.tcpshield.utils.LoggingUtils;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;

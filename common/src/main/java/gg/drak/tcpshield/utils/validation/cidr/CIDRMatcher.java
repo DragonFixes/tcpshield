@@ -1,6 +1,6 @@
 package gg.drak.tcpshield.utils.validation.cidr;
 
-import net.tcpshield.tcpshield.utils.exception.phase.CIDRException;
+import gg.drak.tcpshield.utils.exception.phase.CIDRException;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

@@ -3,12 +3,12 @@ package gg.drak.tcpshield.configs;
 import gg.drak.thebase.storage.StorageUtils;
 import lombok.Getter;
 import lombok.Setter;
-import net.tcpshield.tcpshield.TCPShieldMod;
-import net.tcpshield.tcpshield.provider.ConfigProvider;
-import net.tcpshield.tcpshield.utils.exception.config.ConfigLoadException;
-import net.tcpshield.tcpshield.utils.exception.config.ConfigReloadException;
-import net.tcpshield.tcpshield.utils.exception.config.ConfigResetException;
-import net.tcpshield.tcpshield.utils.exception.phase.ConfigException;
+import gg.drak.tcpshield.TCPShieldMod;
+import gg.drak.tcpshield.provider.ConfigProvider;
+import gg.drak.tcpshield.utils.exception.config.ConfigLoadException;
+import gg.drak.tcpshield.utils.exception.config.ConfigReloadException;
+import gg.drak.tcpshield.utils.exception.config.ConfigResetException;
+import gg.drak.tcpshield.utils.exception.phase.ConfigException;
 
 @Getter @Setter
 public class MainConfig extends ConfigProvider {
