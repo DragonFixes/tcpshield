@@ -5,18 +5,17 @@
     "id": "tcpshield",
     "version": "${version}",
     "metadata": {
-      "name": "TCPShield",
-      "description": "TCPShield support for Quilt",
+      "name": "tcpshield",
+      "description": "This is an example description! Tell everyone what your mod is about!",
       "contributors": {
-        "MrDrakify": "Author",
-        "TCPShield": "API + Some Code Provider"
+        "Me!": "Author"
       },
       "icon": "assets/tcpshield/icon.png"
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
       "init": [
-        "net.tcpshield.tcpshield.quilt.TCPShieldQuilt"
+        "host.plas.quilt.ExampleModQuilt"
       ]
     },
     "depends": [
@@ -30,10 +29,12 @@
       },
       {
         "id": "minecraft",
-        "version": "*"
-      }
-    ],
-    "suggests": [
+        "version": ">=1.20.1"
+      },
+      {
+        "id": "architectury",
+        "version": ">=9.2.14"
+      },
       {
         "id": "geyser",
         "version": "*"

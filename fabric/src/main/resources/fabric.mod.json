@@ -2,36 +2,38 @@
   "schemaVersion": 1,
   "id": "tcpshield",
   "version": "${version}",
-  "name": "TCPShield",
-  "description": "TCPShield support for Fabric",
+  "name": "tcpshield",
+  "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "MrDrakify"
+    "Me!"
   ],
   "contact": {
-    "homepage": "https://dsc.gg/streamline",
-    "sources": "https://github.com/DragonFixes/tcpshield"
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
   "license": "CC0-1.0",
   "icon": "assets/tcpshield/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.tcpshield.tcpshield.fabric.TCPShieldFabric"
+      "gg.drak.tcpshield.fabric.TCPShieldFabric"
     ],
     "client": [
-      "net.tcpshield.tcpshield.fabric.client.DragonUtilsFabricClient"
+      "gg.drak.tcpshield.fabric.client.DragonUtilsFabricClient"
     ]
   },
   "mixins": [
     "tcpshield.mixins.json"
   ],
   "depends": {
-    "fabricloader": "*",
-    "minecraft": "*",
-    "java": "*",
+    "fabricloader": ">=0.17.2",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "architectury": ">=9.2.14",
     "fabric-api": "*"
   },
   "suggests": {
-    "luckperms": "*"
+    "geyser": "*",
+    "floodgate": "*"
   }
 }

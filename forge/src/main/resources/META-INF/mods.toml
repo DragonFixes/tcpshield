@@ -6,37 +6,30 @@ license = "Insert License Here"
 [[mods]]
 modId = "tcpshield"
 version = "${version}"
-displayName = "TCPShield"
-authors = "MrDrakify"
+displayName = "tcpshield"
+authors = "Me!"
 description = '''
-TCPShield support for Forge.
+This is an example description! Tell everyone what your mod is about!
 '''
 #logoFile = ""
 
 [[dependencies.tcpshield]]
 modId = "forge"
 mandatory = true
-versionRange = "*"
+versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.tcpshield]]
 modId = "minecraft"
 mandatory = true
-versionRange = "*"
+versionRange = "[1.20.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.tcpshield]]
-modId = "geyser"
-mandatory = false
-versionRange = "*"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.tcpshield]]
-modId = "floodgate"
-mandatory = false
-versionRange = "*"
+modId = "architectury"
+mandatory = true
+versionRange = "[9.2.14,)"
 ordering = "AFTER"
 side = "BOTH"

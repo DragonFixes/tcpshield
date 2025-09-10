@@ -1,7 +1,7 @@
 plugins {
-    id 'dev.architectury.loom' version '1.7-SNAPSHOT' apply false
+    id 'dev.architectury.loom' version '1.11-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
-    id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
+    id 'com.gradleup.shadow' version '8.3.6' apply false
 }
 
 architectury {
@@ -29,33 +29,11 @@ subprojects {
         // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
         // See https://docs.gradle.org/current/userguide/declaring_repositories.html
         // for more information about repositories.
-        mavenCentral()
-        maven {
-            name = "jitpack"
-            url = "https://jitpack.io"
-        }
-
-        // GeyserMC
-        maven {
-            url = uri("https://repo.opencollab.dev/main/")
-        }
-    }
-
-    loom {
-        silentMojangMappingsLicense()
     }
 
     dependencies {
         minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
-        mappings loom.officialMojangMappings()
-
-        modCompileOnly 'net.luckperms:api:5.4'
-        modCompileOnly('org.geysermc.geyser:api:2.4.2-SNAPSHOT')
-        modCompileOnly('org.geysermc.floodgate:api:2.2.3-SNAPSHOT')
-
-        // Lombok
-        compileOnly 'org.projectlombok:lombok:1.18.34'
-        annotationProcessor 'org.projectlombok:lombok:1.18.34'
+        mappings "net.fabricmc:yarn:$rootProject.yarn_mappings:v2"
     }
 
     java {
