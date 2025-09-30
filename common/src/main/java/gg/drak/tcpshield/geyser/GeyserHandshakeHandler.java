@@ -1,0 +1,42 @@
+package gg.drak.tcpshield.geyser;
+
+import gg.drak.tcpshield.TCPShieldMod;
+import gg.drak.tcpshield.TCPShieldPlugin;
+import org.geysermc.floodgate.api.InstanceHolder;
+
+import java.util.Arrays;
+
+public record GeyserHandshakeHandler() {
+    public void init() {
+        InstanceHolder.getHandshakeHandlers().addHandshakeHandler(data -> {
+            if (data.getIp() == null) {
+                // not bedrock
+                TCPShieldMod.INSTANCE.getDebugger().warn("Connection with no bedrock data joined and ignored: username = %s, hostname = %s", data.getCorrectUsername(), data.getHostname());
+                return;
+            }
+
+            TCPShieldMod.INSTANCE.getDebugger().warn("Bedrock connection joined and validated: username = %s, hostname = %s", data.getCorrectUsername(), data.getHostname());
+
+            String oldPayload = data.getHostname();
+            if (oldPayload.contains("///")) {
+                oldPayload = oldPayload.split("///")[0];
+            }
+
+            String hostname = oldPayload;
+            String realIp = data.getIp();
+            String timestamp = "0";
+            String signature = GeyserUtils.SESSION_SECRET;
+
+            // so floodgate likes to append "\0Floodgate\0" or something stupid to the hostname
+            // which just completely breaks this, so we have to pass these in a different
+            // order to stop bungeecord detecting it as FML data, thanks floodgate.
+            String newHostname = realIp + ":0///" + signature + "///" + timestamp + "///" + hostname;
+            if (hostname.contains("\0")) { // this is usually fine because FML, providing the hostname is first
+                TCPShieldMod.INSTANCE.getDebugger().warn("Hostname contains null byte: " + Arrays.toString(hostname.toCharArray()));
+            }
+
+            TCPShieldMod.INSTANCE.getDebugger().warn("Setting hostname to %s - %s", newHostname, Arrays.toString(newHostname.toCharArray()));
+            data.setHostname(newHostname);
+        });
+    }
+}

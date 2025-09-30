@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "tcpshield",
+  "version": "${version}",
+  "name": "tcpshield",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/tcpshield/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "gg.drak.tcpshield.fabric.TCPShieldFabric"
+    ],
+    "client": [
+      "gg.drak.tcpshield.fabric.client.DragonUtilsFabricClient"
+    ]
+  },
+  "mixins": [
+    "tcpshield.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "~1.20.1",
+    "java": "*"
+  },
+  "suggests": {
+    "architectury": "*",
+    "fabric-api": "*",
+    "geyser": "*",
+    "floodgate": "*"
+  }
+}

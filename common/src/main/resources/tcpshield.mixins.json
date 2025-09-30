@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "gg.drak.tcpshield.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "HandshakeC2SPacketMixin",
+    "IClientIntentionPacketAccessor",
+    "ServerHandshakeNetworkHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
