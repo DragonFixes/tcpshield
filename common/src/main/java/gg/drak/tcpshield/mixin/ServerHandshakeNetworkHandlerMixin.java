@@ -24,13 +24,9 @@ public class ServerHandshakeNetworkHandlerMixin {
         TCPShieldPacket p = new TCPShieldPacket(event);
         TCPShieldPlayer player = new TCPShieldPlayer(event);
 
-        TCPShieldMod.INSTANCE.getPacketHandler().handleHandshake(p, player);
+        boolean cancel = TCPShieldMod.INSTANCE.getPacketHandler().handleHandshake(p, player);
 
-        if (event.isCancelled()) {
-            ci.cancel();
-        }
-
-        if (event.isFailed()) {
+        if (event.isCancelled() || cancel || event.isFailed()) {
             ci.cancel();
         }
     }

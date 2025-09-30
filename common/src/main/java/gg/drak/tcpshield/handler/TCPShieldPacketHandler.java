@@ -80,18 +80,19 @@ public class TCPShieldPacketHandler {
 	 * @param packet The handshake packet
 	 * @param player The involved player
 	 */
-	public void handleHandshake(PacketProvider packet, PlayerProvider player) throws HandshakeException {
+	public boolean handleHandshake(PacketProvider packet, PlayerProvider player) throws HandshakeException {
 		try {
-			InetAddress inetAddress = InetAddress.getByName(player.getIP());
+			InetAddress inetAddress = InetAddress.getByName(player.getIP().split("///")[0]);
 
 			String extraData = null;
 			String[] payload = packet.getPayloadString().split("///");
 
 			if (payload.length != 4)
 				if (cidrValidator.validate(inetAddress))
-					return; // Allow connection with no processing
+					return false; // Allow connection with no processing
 				else
-					throw new InvalidPayloadException("length: " + payload.length + ", payload: " + Arrays.toString(payload) + ", raw payload: " + packet.getPayloadString());
+                    return true; // Drop connection
+//					throw new InvalidPayloadException("length: " + payload.length + ", payload: " + Arrays.toString(payload) + ", raw payload: " + packet.getPayloadString());
 
 			int nullIndex;
 			if ((nullIndex = payload[3].indexOf('\0')) != -1) { // FML tagged payload
@@ -194,5 +195,7 @@ public class TCPShieldPacketHandler {
 			else
 				throw e;
 		}
+
+        return false;
 	}
 }
