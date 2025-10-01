@@ -2,7 +2,7 @@
 Forge, Fabric, Quilt, etc. mod to block incoming connections to your Minecraft server unless they are specifically from TCPShield.
 
 ## Features
-- **Default Config** similar to the TCPShield plugins for Bukkit, Bungee, and Velocity.
+- **Default Config** similar to the TCPShield plugin's config for Bukkit, Bungee, and Velocity.
 - Etc.
 
 ## How It Works
