@@ -1,28 +1,34 @@
 # TCPShield
+Forge, Fabric, Quilt, etc. mod to block incoming connections to your modded Minecraft server unless they are specifically from TCPShield.
 
-<center>
-  <img src="https://cdn.modrinth.com/data/cached_images/2a6a3fda442cad3deea84d74f51b8eb9665b8b23.png" alt="Available for Fabric">
-  <a href="https://github.com/nullsoepic/tcpshield"><img src="https://cdn.modrinth.com/data/cached_images/38096c06b1420ee71402de9bfd02e1b2affed8ca.png" alt="See me on Github"></a>
-  <a href="https://ko-fi.com/vibing"><img src="https://cdn.modrinth.com/data/cached_images/1c1ecf4b2b68094dc8305cc92776decde6873df8.png" alt="Support me on Ko-fi"></a>
+## Features
+- **Default Config** similar to the TCPShield plugin's config for Bukkit, Bungee, and Velocity.
+- Etc.
 
-  <br>
-  <img src="https://cdn.modrinth.com/data/cached_images/75d1334959fb500ebccac9c71149e24474e5b803.png" alt="If you ask for Forge I will steal your Kneecaps">
-</center>
+## How It Works
+When a connection is handled, it parses the connection packet and checks if it originated from TCPShield. If it did, it accepts the connection handshake, if not it blocks it.
 
-<hr>
+## Credits
+I did not write most of the code for this, the original plugin devs of the TCPShield plugin (for Bukkit, Bungee, and Velocity) provided most of the code for this. I simply used their own code and adapted it to work with modded Minecraft.
 
-A simple Fabric mod to help secure your Minecraft server by blocking incoming connections unless they come from TCPShield proxies.
+I use my own library (TheBase) to handle the configuration and I use Artifactory to handle multiplatform capabilities.
 
-### Features
-- **No Config Needed**: The mod automatically fetches TCPShield proxy ranges.
-- **Blocks Early**: Unauthorized connections are blocked at the handshake packet.
-- **Just works**: Just drop it in and it's good to go.
+## Notes
+- I did not actually use any code from the upstream repo, and might actually rebase into a standalone repo. I originally was going to use it as a guide, but it turned out that the code simply did not work at all (and was just for Fabric). So, yes, I rewrote the entire thing basically from scratch. As stated above, I used code found in this repo [(**The Official TCPShield Plugin Repo**)](https://github.com/TCPShield/RealIP) and adapted it to be used with Artifactory. I coded all of the Mixin code myself along with the code for the core Artifactory classes.
+- I tried to keep the code as clean and slim as possible. If you have suggestions for edits, let me know.
+- Also, there is a 1.20.1 version (the main version) and a 1.21.1 version. Note that the 1.21.1 version has not yet been made to work. Only the 1.20.1 version works.
 
-### How It Works
-The mod pulls TCPShield proxy ranges when your server starts and blocks any incoming traffic that doesn't come from these proxies at the handshake packet.
+## Support
+*If you have any issues with the mod*
 
-### Important Note
-I'm not affiliated with TCPShield; this is just a passion project to help keep servers secure. I made it because I needed something like it and couldn't find a good option.
+You **will not**:
+- Make a ticket in the TCPShield discord asking for help.
+- Make an issue on the main TCPShield plugin GitHub repo.
+- Harass anyone other than me (Drak - @drakdv on Discord) about fixing it.
 
-### Support
-For any issues or questions, please open a GitHub issue on the [GitHub page](https://github.com/nullsoepic/tcpshield/issues/new).
+You **will**:
+- Join my support Discord for help or bug reports: https://dsc.gg/streamline
+- Only ask for help from Drak (or contributing devs).
+- Understand that I am not at all associated with TCPShield or the TCPShield brand.
+
+Thank you.

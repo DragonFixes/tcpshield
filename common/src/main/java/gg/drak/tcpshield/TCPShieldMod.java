@@ -14,7 +14,7 @@ public class TCPShieldMod extends DragonMod implements TCPShieldPlugin {
     public static TCPShieldMod INSTANCE;
 
     public static final Logger LOGGER = LoggerFactory.getLogger("TCPShield");
-    public static final String MOD_ID = "assets/tcpshield";
+    public static final String MOD_ID = "tcpshield";
 
     private static MainConfig CONFIG;
 
