@@ -11,7 +11,7 @@ authors = "Drak"
 description = '''
 TCPShield support for Forge.
 '''
-logoFile = "assets/tcpshield/icon.png"
+logoFile = "tcpshield/icon.png"
 credits = "Thanks to TCPShield for creating the service and allowing me to make this mod."
 
 [[dependencies.tcpshield]]
